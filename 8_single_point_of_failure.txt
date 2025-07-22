@@ -1,0 +1,35 @@
+Ques. What is single point of failure (SPOF)?
+Ans.  Single Point of Failure is any component in a system whose failure would cause the entire system to stop working or severely degrade.
+      Examples:
+      Single Database Instance: If it goes down, no one can read/write data.
+      Single Load Balancer: If the LB fails, no traffic reaches servers, even if servers are fine.
+      Single Region Deployment: If a data center goes down, the app is unavailable globally.
+
+Ques. What techniques to use to avoid this failure?
+Ans.  1. Add multiple nodes for critical services (web servers, DBs, caches) --> horizontal scaling basically
+      2. Multiple Load Balancers (LB)
+      3. Database Replication - Use master-slave (leader-follower) - Master handles writes, replicas handle reads.
+      4. Deploy in Multiple Regions to survive regional outages.
+      5. Use caches (Redis, CDN) to serve stale data if DB is temporarily down.
+      6. Use message queues (Kafka, SQS) to buffer writes during DB outages.
+
+Ques. Points to remember
+Ans.  1. More nodes
+      2. Master slave
+      3. multiple regions
+
+Ques. Real-World Example of SPOF Mitigation
+Ans.  1. NETFLIX
+         - Uses Chaos Monkey to intentionally kill random instances to test SPOF resistance.
+         - everything runs in multiple regions with automated failover.
+
+      2. AMAZON
+        - Spreads infrastructure across multiple availability zones.
+        - Uses active-active replication for DynamoDB and S3.
+
+🧠 Interview Tip
+  If asked “How would you make system X highly available?”, structure your answer as:
+    Identify possible SPOFs.
+    Explain redundancy (horizontal scaling + replication).
+    Explain regional failover.
+    Mention automated monitoring & health checks.

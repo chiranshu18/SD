@@ -1,0 +1,82 @@
+Ques. WHAT IS SYSTEM DESIGN?
+Ans.  System design is about making scalable, reliable, and maintainable software systems. 
+      It involves making high-level decisions about how components interact, how data flows, and how the system performs under various conditions.
+
+Ques. WHAT IS VERTICAL SCALING?
+Ans.  Increasing a system's capacity by upgrading hardware (e.g., more CPU, RAM) on a single server. 
+      It's simple but limited in scale and can become a single point of failure.
+
+Ques. WHAT IS PREPROCESSING USING CRON JOBS?
+Ans.  Scheduled tasks that run periodically to perform background work (e.g., data cleanup, report generation).
+
+Ques. WHAT ARE BACKUP SERVERS?
+Ans.  Standby or replica servers that can take over if the primary server fails. This improves reliability and availability
+
+Ques. WHAT IS HORIZONTAL SCALING?
+Ans.  Adding more servers to distribute the load. 
+      It's more scalable than vertical scaling and supports high availability but requires smart load distribution and coordination.
+
+Ques. WHAT ARE MICROSERVICES?
+Ans.  An architectural style where a system is broken into smaller, independent services that communicate over APIs. 
+      It enables flexibility and scalability.
+
+Ques. WHAT ARE DISTRIBUTED SYSTEMS?
+Ans.  A system where components are spread across multiple networked machines but act as a single system. 
+      They aim for scalability and fault tolerance but introduce challenges like consistency, latency, and coordination.
+
+Ques. WHAT IS LOAD BALANCING?
+Ans.  Distributes incoming traffic across multiple servers to prevent overload and ensure high availability. 
+      Can be done at various levels (DNS, TCP, HTTP) and commonly uses tools like Nginx, HAProxy, or cloud-native load balancers.
+
+Ques. WHAT IS DECOUPLING?
+Ans.  Designing systems where components interact with minimal dependencies. 
+      It increases flexibility, maintainability, and makes it easier to scale parts of the system independently.
+
+Ques. WHAT IS LOGGING AND METRICS CALCULATION
+Ans.  Used for monitoring system health, diagnosing issues, and understanding usage patterns.
+      Logs capture events; metrics capture aggregated performance data (e.g., request latency, error rates).
+
+Ques. WHAT IS EXTENSIBILITY
+Ans.  Designing a system so it can be easily extended with new features or changes without major rewrites. 
+      Achieved via modular design, APIs.
+
+Ques. WHAT IS CACHING?
+Ans.  Used to store frequently accessed data temporarily to reduce load on backend systems and improve performance. 
+      Tools: Redis, Memcached.
+
+QUES. WHAT IS DATABASE DESIGN & INDEXING?
+Ans.  Choosing the right DB (SQL/NoSQL), schema design, normalization/denormalization, and use of indexes for performance.
+
+QUES. WHAT IS ASYNC PROCESSING & QUEUES?
+Ans.  Used for tasks that don’t need to be done in real-time (e.g., sending emails). 
+      Queues like Kafka, RabbitMQ help handle async workloads.
+
+Ques. WHAT IS AUTHENTICATION AND AUTHORIZATION?
+Ans.  Ensures that only allowed users or systems can access specific parts of the system. 
+      Includes OAuth, JWT, session-based auth, etc.
+
+Ques. WHAT IS FAILURE RECOVERY & FAULT TOLERANCE
+Ans.  Designing systems to handle partial failures gracefully (e.g., retries, circuit breakers, replicas).
+
+Ques. WHAT IS RATE LIMITING AND THROTTLING?
+Ans.  Used to prevent abuse and protect resources by limiting how many requests a user/client can make.
+
+Ques. WHAT ARE CONTENT DELIVERY NETWORKS (CDNs)?
+Ans.  It distributes static assets across global edge servers to reduce latency (e.g., Cloudflare, Akamai).
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ques. What is availablity and how do make sure your system is always available
+Ans.  
+
+Ques. What is back of the envelope calculation?
+Ans.  
+
+Ques. What are DNS, IP Addresses, etc?
+Ans.  
+
+Ques. How to monitor different types of errors on client side
+Ans. 
+
+Ques. CDN vs Reverse Proxy (interviewers love this confusion)?
+Ans.  

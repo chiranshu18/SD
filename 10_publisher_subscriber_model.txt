@@ -1,0 +1,54 @@
+Ques. What is publisher subscriber model?
+Ans.  The Pub-Sub model is a messaging pattern where publishers send messages (events) to a message broker, and subscribers receive those messages if they have expressed interest in them.
+      - Publishers don’t know who the subscribers are — they just publish events.
+      - Subscribers don’t care who the publisher is — they just consume relevant events.
+
+      Simple Analogy 1
+      - Think of YouTube:
+      - Publisher = A YouTuber uploading a video.
+      - Subscribers = People who subscribed to the channel.
+      - Message Broker = YouTube platform, which delivers new videos to subscribers who opted in.
+
+      SIMPLE ANALOGY 2
+      - Think of a Magzine (Tech Today):
+      - Publisher = The company that creates and prints "Tech Today" magazine. They produce new issues periodically.
+      - Subscribers = You, the reader, who wants to receive "Tech Today" whenever a new issue comes out. You explicitly subscribe to this magazine.
+      - Message Broker = A central entity (postal service) that handles the distribution. 
+
+        How it works in the analogy:
+        You (Subscriber) tell the magazine distributor (Broker) that you want to subscribe to "Tech Today."
+        The "Tech Today" company (Publisher) finishes a new issue and send it to the magazine distributor (Broker).
+        The magazine distributor (Broker) knows who subscribed to "Tech Today" and sends the new issue to all those subscribers.
+
+        The publisher doesn't need to know who is reading their magazine, 
+        and you, the subscriber, don't need to constantly check with the publisher for new issues. 
+        There's a decoupling between the producer and consumer of information.
+
+      Real-Life Example in System Design - PAYMENT SYSTEM:
+      Publisher:
+      - Order service publishes "Order Completed".
+      Subscribers:
+      - Inventory service reduces stock.
+      - Notification service sends an email.
+      - Analytics service logs the sale.
+
+Ques. Why Is It Used / Needed?
+Ans.  Various reasons:
+      - Decoupling: Services don’t directly call each other → easier to maintain.
+      - Scalability: Multiple subscribers can act independently.
+      - Asynchronous Communication: Publishers don’t wait for subscribers to finish.
+      - Fan-out Messaging: One event can trigger multiple actions.
+
+Ques. Limitations / Drawbacks?
+Ans.  Eventual Consistency - Subscribers process events at different times, data may not be immediately consistent.
+      Complex Debugging -	Hard to trace which subscriber processed which event.
+      Delivery Guarantees -	Ensuring "at-least-once" or "exactly-once" delivery is hard.
+      Message Ordering - Hard to maintain strict order in distributed systems.
+
+Ques. Real world examples?
+Ans.  Uber --> When a ride ends → billing, driver payment, and trip history update happen via pub-sub.
+      Netflix --> Publishes "new episode available" events → multiple services handle notifications, recommendations, etc.
+      E-commerce (Amazon) -->	Order service publishes events → inventory, shipping, email services subscribe.
+
+
+NOTE. The Pub-Sub model is the foundation of event-driven systems, so let’s expand on that.

@@ -1,0 +1,50 @@
+Ques. What is Caching?
+Ans.  Caching is the technique of storing frequently accessed or expensive-to-compute data in a faster-access storage (local) so future requests can be served more quickly.
+      Goal: Reduce latency, lower DB load, and improve throughput.
+      Typical tools: Redis, Memcached, CDN edge caches, in-memory data stores.
+
+Ques. What are the usecases of caching?
+Ans.  1. Database Query Caching - Store results of expensive SELECT queries
+      2. Full Page Caching - Cache entire HTML page for logged-out users
+      3. API Response Caching - Cache public or idempotent GET responses (e.g., product details)
+      4. CDN Caching - Cache static assets (images, JS, CSS) at the edge (Cloudflare, Akamai)
+      5. Session or Token Storage - Store user sessions or auth tokens in Redis
+      6. Computation Caching - Cache results of expensive calculations or ML predictions
+
+Ques. What are the Limitations/Drawbacks of caching?
+Ans.  1. Stale Data
+      2. Limited Size
+      3. Write Complexity - You must update or invalidate the cache after writes to DB
+      4. Cache Invalidation Is Hard - Logic for when/how to expire cache is tricky and error-prone
+      5. Cold Start - Empty cache on startup or first hit causes slow response (cache miss)
+      6. Consistency Issues - Cache and DB can be out of sync, especially in distributed systems
+
+Ques. How do I manage writes in caching when DB is updated?
+Ans.  Several strategies exist:
+      1. Write-Through Cache - Write is made to cache and DB simultaneously.
+      2. Write-Behind Cache - Write is made to cache, and DB is updated asynchronously later.
+      3. Cache Invalidation - After DB update, remove cache entry so that the next read gets fresh data.
+      4. Read-Through Cache - On cache miss, app fetches from DB, stores in cache then returns data.
+      5. Cache-Aside - App → (Check Cache → Miss → Fetch DB → Populate Cache → Return Result)
+
+      🧠 Interview Tip: For most systems, use cache aside (read-through + cache invalidation) after write.
+
+Ques. Cache Aside vs Read-Through
+Ans.  1. Read-Through - You (the app) open the fridge, and if food is missing, the fridge magically orders it and stocks it automatically.
+      2. Cache Aside  - You (the app) go to the fridge, and if food is missing, you go to the store yourself, bring it back, and put it in the fridge.
+
+Ques. What data should I evict on overflow in cache? --> cache policy? --> Least recently used (LRU) and Least frequently used (LFU)
+Ans.  Common eviction policies:
+      1. LRU (Least Recently Used) - Default in Redis
+      2. LFU (Least Frequently Used) - Best for popularity-based data
+      3. FIFO (First In, First Out) - Simple but naïve
+      4. Time-based Expiry (TTL) - Set expiration time for each entry - Session tokens, auth credentials
+      5. Manual Eviction - App explicitly deletes entries - After DB writes or invalidations
+
+Ques. Where do you place your cache? --> client/db/server/global(redis)
+Ans.  All these have their separate caches.
+      1. Client-Side - Cache in browser (localStorage) - Page HTML, JWT tokens
+      2. Server-Side (App-Level) - In-memory cache per app instance -	LRU cache in process memory
+      3. Distributed Cache (Global) - Shared across app nodes (Redis)	- Session store, response cache
+      4. Database-Level - DBs may have internal caches - PostgreSQL’s query planner cache
+      5. Edge/CDN Cache - Near the user (geographically) - Cloudflare, Akamai caching images or scripts

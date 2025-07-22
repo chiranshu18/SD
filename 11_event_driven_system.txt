@@ -1,0 +1,92 @@
+Ques. What Is an Event-Driven System?
+Ans.  An event-driven system is a system where state changes or actions are triggered by events. Events are first-class citizens, and the flow of the system depends on them.
+      Event = A significant state change → e.g., “Order Placed”, “User Signed Up”.
+
+      Event Flow (Simplified):
+      - Producer publishes event (Publisher).
+      - Event Broker routes event (Message Broker like Kafka, RabbitMQ).
+      - Consumers react to the event (Subscribers).
+
+      Analogy
+      - Think of a smart home:
+      - Event: Door opens.
+      - Reactions: Light turns on, Camera starts recording, Notification sent to your phone.
+      - Each reaction is independent of the others.
+
+Ques. Why Do We Need Event-Driven Systems?
+Ans.  Various reasons:
+      - Decoupling: Components work independently.
+      - Real-Time Processing: Process events as they occur.
+      - Scalable and Extensible: Adding new features just means adding new subscribers.
+      - Resiliency: If one subscriber fails, others continue.
+
+Ques. Advantages?
+Ans.  Loose Coupling - Services interact via events, not direct API calls.
+      High Scalability - Each service can scale independently.
+      Asynchronous & Non-Blocking -	Publishers don’t wait for consumers.
+      Extensibility -	Adding new subscribers doesn’t change existing logic.
+      Better User Experience - Real-time notifications, analytics, etc.
+
+Ques. Limitations / Drawbacks
+Ans.  Complex Debugging -	Hard to trace end-to-end flow of an event.
+      Eventual Consistency - No immediate data consistency across services.
+      Error Handling - What happens if an event fails to process? Need retries & dead-letter queues.
+      Message Duplication	- Consumers must be idempotent (handle duplicate events safely).
+
+Ques. Real-World Examples
+Ans.  Uber - Trip completion triggers billing, driver rating, receipt generation.
+      Netflix -	User watches a movie → updates watch history, triggers recommendations.
+      E-commerce - "Order Placed" event triggers inventory update, payment processing, shipping.
+      IoT Systems -	Sensor detects temperature spike → triggers alert system.
+
+Ques. Pub-Sub vs Event-Driven Systems
+Ans.  Listed below:
+
+| Aspect         | Pub-Sub                                                | Event-Driven System                                             |
+| -------------- | ------------------------------------------------------ | --------------------------------------------------------------- |
+| Definition     | Messaging pattern where publishers send to subscribers | Architectural style built around events                         |
+| Scope          | Narrower → Just the communication pattern              | Broader → Includes event storage, processing, and orchestration |
+| Example        | Sending notifications to multiple subscribers          | Entire e-commerce order flow triggered by events                |
+
+
+Ques. Technologies Used
+Ans.  Pub-Sub / Messaging Brokers:
+      Kafka, RabbitMQ, Google Pub/Sub, AWS SNS/SQS
+
+      Event-Driven Orchestration:
+      Kafka Streams, AWS EventBridge, serverless event-driven systems.
+
+Ques. Summary Interview Tips
+Ans.  If asked in an interview:
+      - Start with definition (Pub-Sub → messaging pattern; Event-Driven → architectural style).
+      - Talk about decoupling, scalability, and eventual consistency trade-offs.
+      - Give a real-world example (Netflix, Uber, Amazon).
+      - Mention tools (Kafka, RabbitMQ).
+
+Ques. When to use it and when to not?
+Ans.  If asked “When to use event-driven architecture?”, answer:
+      - Use when you need asynchronous, decoupled, and scalable processing. 
+      - Give 2 real-world examples (e.g., Uber trip completion, Netflix recommendations).
+
+      - Avoid when you need synchronous and strongly consistent workflows.
+      - Give 2 real-world examples
+        - Bank Account Transfers - can’t risk eventual consistency; strong consistency is required.
+        - Flight Booking / Ticketing Systems - Seat availability must be updated instantly to avoid double-booking; strong consistency is required.
+
+
+Ques. How is it different from publisher-subscriber model
+Ans.  Pub-Sub (ps) model is a messaging pattern whereas event driven system (eds) is an architectural style where entire system’s flow is driven by events.
+      
+| Aspect      | Publisher-Subscriber Model                                                      | Event-Driven System                                                                                |
+| ----------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Definition  | Messaging pattern where publishers send messages to subscribers (via a broker). | Architectural style where the entire system’s flow is driven by events.                            |
+| Scope       | Narrow (just communication).                                                    | Broad (includes event generation, streaming, storage, and processing).                             |
+| Trigger     | Publisher explicitly pushes a message.                                          | Any state change (event) triggers multiple reactions automatically.                                |
+| Components  | Publishers, Subscribers, Message Broker.                                        | Producers, Consumers, Event Routers, Event Stores, Stream Processors.                              |
+| Data Flow   | Fire-and-forget message delivery.                                               | Events can be processed, stored, replayed, or orchestrated.                                        |
+| Example     | Sending notifications when a blog post is published.                            | Complete e-commerce order flow: order placed → inventory updated → payment processed → email sent. |
+| Tech Stack  | RabbitMQ, Google Pub/Sub, AWS SNS.                                              | Kafka (event streaming), AWS EventBridge, Event Sourcing patterns.                                 |
+
+Analogy:
+- Pub-Sub = A postal system: Publisher sends letters, subscribers receive them.
+- Event-Driven System = A smart city: Every action (traffic light change, door opening) triggers a chain of independent automated responses

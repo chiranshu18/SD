@@ -1,0 +1,67 @@
+Ques. What is Monolith Architecture?
+Ans.  A monolithic architecture is a software design where the entire application is built and deployed as a single unit.
+
+Ques. What are the Advantages of a Monolith Architecture?
+Ans.  1. Simplicity - Easier to build, debug, and deploy — great for small teams.
+      2. Local Development - Everything runs together — no need to mock services or run multiple servers.
+      3. Performance - Function calls are faster than network calls (no inter-service overhead).
+      4. Transaction Management - Easier to manage transactions and consistency — usually one DB.
+      5. Deployment - Single deployment pipeline simplifies CI/CD setup.
+
+Ques. What are the Disdvantages of a Monolith Architecture?
+Ans.  1. Scalability - You can't scale components independently — must scale the whole app.
+      2. Deployment Risks - A small change requires redeploying the entire app, risking regressions.
+      3. Tight Coupling - Hard to manage when the app grows — changes ripple through multiple modules.
+      4. Slower Team Velocity - Teams step on each other's toes, harder to adopt new tech or paradigms.
+      5. Hard to Modularize - Over time, code becomes a mess, also making it difficult for new developers to understand the code.
+
+Ques. What is Microservice Architecture?
+Ans.  A microservice architecture breaks the application into smaller, independent services, each responsible for a specific business capability. 
+      These services communicate over the network (usually HTTP or messaging).
+
+Ques. What are the Advantages of a Microservice Architecture?
+Ans.  1. Independent Deployability - Teams can deploy their service without affecting others.
+      2. Scalability - Services can scale independently based on load.
+      3. Tech Diversity - Each service can use the best language or database for its job.
+      4. Fault Isolation - Failures are isolated; one service crashing doesn’t bring down the whole system.
+      5. Better Organization - Easier for large teams to work in parallel with well-defined boundaries.
+
+Ques. What are the Disdvantages of a Microservice Architecture?
+Ans.  1. Operational Complexity - Need to manage service discovery, load balancing, monitoring, etc.
+      2. Inter-Service Communication - Overhead of API calls, retries, fallbacks, and versioning.
+      3. Data Consistency - Harder to manage ACID transactions across services.
+      4. Increased Latency - Network calls are slower and prone to failure compared to function calls.
+      5. Harder Testing & Debugging - Distributed systems make tracing bugs much harder.
+
+Ques. Some points which would help convince an interviewer for using a Monolith Architecture over Microservice Architecture?
+Ans.  Use these when:
+        - The system is simple or early-stage.
+        - You want to optimize for speed of development.
+      
+      Talking Points:
+        1. Faster to Build and Launch
+        2. Simpler Dev Environment
+        3. Cheaper to Operate
+        4. Easier to Test
+        5. Lower Team Complexity
+
+Ques. Some points which would help convince an interviewer for using a Microservice Architecture over Monolith Architecture?
+Ans.  Use these when:
+        - The system is growing or is already complex.
+        - Teams need autonomy and reliability at scale.
+      
+      Talking Points:
+        1. Independent Scaling
+        2. Team Autonomy
+        3. Technology Flexibility
+        4. Resilience: Failures in one service won’t take down the whole system (circuit breakers, retries).
+        5. Global Distributed Systems: Works better with multi-region and edge-oriented systems.
+
+Ques. Real world examples for microservices architecture.
+Ans.  Amazon, Uber, Google, etc.
+
+Ques. Real world examples for monolith architecture.
+Ans.  Basecamp, Stackoverflow.
+      Airbnb, twitter started with monolith, but has gradually moved towards microservices
+
+GOLDER RULE --- Start with a monolith. Split into microservices only when you have a clear operational, scaling, or team boundary need.

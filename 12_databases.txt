@@ -1,0 +1,84 @@
+Ques. What is SQL (Relational Databases)?
+Ans.  - SQL databases are relational databases that store data in tables (rows & columns) with predefined schemas.
+      - Examples: MySQL, PostgreSQL.
+
+      Key Characteristics:
+      - Structured Schema → fixed table structure.
+      - ACID Transactions → strong consistency.
+      - SQL Query Language → powerful joins and aggregations.
+
+      Real-World Examples:
+      - Banking (money transfers need strict consistency).
+      - E-commerce transactions (orders, payments).
+
+Ques. What is NoSQL (Non-Relational Databases)?
+Ans.  - NoSQL databases store data in flexible, schema-less formats (documents, key-value, graph, or column-based).
+      - Examples: MongoDB (document), Redis (key-value), Cassandra (column), Neo4j (graph).
+
+      Key Characteristics
+      - Flexible Schema → no fixed table structure.
+      - Eventual Consistency (BASE model) → trades some consistency for availability & scalability.
+      - Horizontal Scaling Friendly.
+
+      Real-World Examples
+      - Social Media Feeds (Facebook, Twitter).
+      - IoT & Real-Time Analytics (storing millions of events).
+      - Caching & Session Stores (Redis).
+
+Ques. Advantages of NoSQL?
+Ans.  - Fast writes and simple reads → great for high-velocity workloads. However, complex querying (aggregations, multi-table joins) is not always easy.
+      - Flexible schema → quick adaptation to changing requirements.
+      - Horizontally scalable → great for big data and global distribution.
+      - Good for analytics (columnar NoSQL like Cassandra, HBase).
+
+Ques. Disadvantages of NoSQL?
+Ans.  - Weaker consistency → eventual consistency in most NoSQL systems.
+      - Joins & complex queries are difficult → data often denormalized.
+      - JOINS are difficult
+      - Not ideal for strict transactional (ACID) systems.
+
+Ques. Which One to Choose?
+Ans.| Requirement                                                                       | Choose     |
+    | --------------------------------------------------------------------------------- | ---------- |
+    | Strict consistency, complex transactions** (banking, stock trading)               | SQL        |
+    | Massive, unstructured, or semi-structured data** (social media, IoT, analytics)   | NoSQL      |
+    | Rapidly changing schema                                                           | NoSQL      |
+    | Complex relationships (joins)                                                     | SQL        |
+    | High write throughput & horizontal scaling                                        | NoSQL      |
+
+Ques. Interview Tip – How to Answer
+Ans.  Possible Interview Questions:
+      - Which database would you choose for [specific system] and why?
+      - How would you store millions of user activity logs?
+      - Can we replace SQL with NoSQL in an existing financial app?
+
+      Step 1: Clarify Requirements
+      - Is consistency more important than availability?
+      - Do we need complex relationships or joins?
+      - How big is the dataset, and how often does it change?
+
+      Step 2: Justify Your Choice
+      - For a financial application, I’d choose SQL (like PostgreSQL) because strong consistency and ACID transactions are crucial. 
+      - NoSQL is great for horizontal scalability and high write throughput, but eventual consistency could lead to inconsistent account balances.
+
+      OR
+
+      - For a social media feed, I’d prefer NoSQL (like Cassandra or MongoDB) 
+      - because we need to store huge volumes of semi-structured posts, scale horizontally, and tolerate eventual consistency.
+
+      Step 3: Smart Balanced Answer (if asked “SQL or NoSQL?”)
+      - It depends on the requirements. SQL is best for structured data, strict consistency, and transactions (e.g., banking). 
+      - NoSQL is better for scalability and flexibility with large, semi-structured datasets (e.g., social media).
+      - In practice, many systems are hybrid—SQL for core transactions and NoSQL for analytics or caching.
+
+Ques. Real-World Hybrid Example
+Ans.  AMAZON
+      - Orders & Payments → SQL (Aurora).
+      - Product Catalog & Recommendations → NoSQL (DynamoDB).
+      - Caching → Redis (NoSQL).
+
+**INTERVIEW TIP**
+- If I need strict consistency, complex relationships, and transactional integrity, I’ll go for SQL (e.g., banking or flight booking).
+
+- If I need high scalability, flexible schema, and can tolerate eventual consistency, I’ll pick NoSQL (e.g., social media or analytics). 
+  In real systems, we often use both—SQL for transactions and NoSQL for caching or analytics.”

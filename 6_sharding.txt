@@ -1,0 +1,55 @@
+Ques. What is Database Partitioning?
+Ans.  Partitioning is the process of splitting a large table into smaller, more manageable sub-tables (partitions) within the same database instance.
+      Think of it as internal splitting of data to improve performance and manageability — but it still lives in one server.
+
+Ques. What is Database Sharding?
+Ans.  Sharding is a horizontal partitioning strategy where the data is split across multiple database servers (shards), each holding a subset of the data.
+      Each shard functions like an independent database, and your application (or a middleware/router) must know how to route queries to the correct shard.
+      Think of it as external splitting of data across physically separate databases — usually for scalability and capacity.
+
+Ques. Why are these needed?
+Ans.  1. Scalability - As data and traffic grow, a single server can't handle it all — you need to distribute the load.
+      2. Performance - Querying smaller tables (or only specific shards) improves response times.
+      3. Storage Limits - One server may hit disk or memory limits. Splitting helps spread the load.
+      4. Maintainability - Backup, indexing, or archiving is easier on smaller datasets.
+
+Ques. When are this needed?
+Ans.  You should consider partitioning or sharding when:
+      1. High read/write throughput - You can't scale vertically anymore 
+      2. Massive datasets - Tables with billions of rows slow down scans and queries.
+      3. Hotspot issues - Some partitions get queried far more often than others.
+      4. Slow backups or migrations - You want to isolate parts of the dataset for faster ops.
+
+Ques. What are the advantages and disadvantages of Sharding?
+Ans.  ✅ Advantages:
+        Horizontal Scalability
+        Distribute storage and load
+        Parallel query processing
+        Fault isolation (one shard going down doesn't kill all data)
+
+      ❌ Disadvantages:
+        Complex routing logic
+        Hard to run global queries (e.g., joins across shards)
+        Re-sharding is painful (if shard balance is off)
+        Operational complexity: Backups, failovers, replication are harder
+
+Ques. What are the advantages and disadvantages of Partitioning?
+Ans.  ✅ Advantages:
+        Improved query performance (pruning reduces scanned data)
+        Easier data maintenance (drop/archive partitions)
+        Simpler than sharding
+        Built-in DB support
+
+      ❌ Disadvantages:
+        Limited by a single DB server
+        Wrong partition key = poor performance
+        Not suitable for massive scale alone
+        Some DBs have poor support for partition-aware indexing or foreign keys
+
+Ques. Interview Tips
+Ans.  - Be clear that partitioning is intra-database, while sharding is inter-database.
+      - Always justify sharding with scale or isolation reasons — don't over-engineer.
+      - Know rebalancing shards is hard — mention virtual shards or consistent hashing as a strategy.
+      - Suggest starting with partitioning, and move to sharding when scaling needs arise.
+
+reference video - https://www.youtube.com/watch?v=wXvljefXyEo&t=13s

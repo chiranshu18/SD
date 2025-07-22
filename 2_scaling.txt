@@ -1,0 +1,48 @@
+VERTICAL SCALING vs HORIZONTAL SCALING
+
+VERTICAL SCALING (SCALING UP)
+  - Increasing a system's capacity by upgrading hardware (e.g., more CPU, RAM) on a single server.
+  - It's simple but limited in scale and can become a single point of failure.
+  - Load balancing is not required.
+  - It's a single point of failure.
+  - data is consistent as it is stored on a single server.
+  - high performance machines are expensive. Diminishing returns for price/performance as you scale vertically.
+  - Hardware upgrades often require downtime.
+
+  - Example: Upgrading a single server from 8GB RAM to 64GB RAM.
+
+HORIZONTAL SCALING (SCALING OUT)
+  - Adding more servers (machines) to distribute the load.
+  - It's more scalable(near unlimited scaling) and supports high availability but requires smart load distribution and coordination.
+  - Load balancing is required.
+  - It is resilient and does not have a single point of failure.
+  - data is not consistent as it sufferes due to replication, latency, and coordination issues (think CAP theorem).
+
+  - Example: Adding more servers behind a load balancer.
+
+
+
+
+
+Ques. What is CAP THEOREM?
+Ans.  Consistency, Availability, Partition Tolerance.
+      
+      Consistency: All nodes see the same data at the same time.
+      Availability: The system is always available and responsive.
+      Partition Tolerance: The system can continue to operate even if some nodes are down.
+      
+      This theorem states that a system can only have two of the three properties.
+      In practice, we need to trade off between consistency and availability. Partition tolerance is always a must.
+
+
+Ques. Why Consistency Suffers in Horizontal Scaling?
+Ans.  - There may be delays in propagating writes to all replicas.
+      - Some nodes might return stale data if they haven’t caught up.
+      - Network delays or failures may cause conflicting updates (eventual consistency).
+
+      Example - You post a comment on a social media platform. Immediately refreshing the page shows:
+                On Server A: Your comment appears (you hit the node that processed the write).
+                On Server B: Your comment doesn't show up yet (replication delay).
+                That's eventual consistency, a trade-off in horizontal/distributed systems.
+      
+

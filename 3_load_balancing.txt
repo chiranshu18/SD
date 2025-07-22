@@ -1,0 +1,22 @@
+Ques. What is Load Balancing?
+Ans.  When you scale a system horizontally by adding multiple servers, a Load Balancer distributes incoming network traffic across all available servers to ensure:
+        - No single server is overloaded
+        - High availability and reliability
+        - Better performance and responsiveness
+        - examples: Nginx, Cloudflare, Google Cloud Load Balancer.
+      
+      Consistant hashing helps us with load balancing.
+
+Ques. What is consistent hashing?
+Ans.  A hashing algorithm used in distributed systems to evenly distribute requests across servers.
+      When a server is added or removed, only a small portion of keys get remapped (not all, like in naive hashing).
+
+      Why "Consistent"? --> Because the system minimizes reassignments when topology (number of servers) changes 
+
+Ques. How is consistent hashing useful in load balancing?
+Ans.  Consistent hashing enables predictable and minimal-impact routing of traffic to servers in a horizontally scaled system. It is very useful when:
+      - You want to direct specific requests consistently to the same server (for cache locality or sticky sessions)
+      - You add or remove servers, and want minimal redistribution of load or data
+
+      - You hash a user ID and map it to one of 5 web servers.
+      - If one server goes down, only the users mapped to that server get remapped to nearby ones, not all users.

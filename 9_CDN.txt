@@ -1,0 +1,54 @@
+Ques. What is a CDN?
+Ans.  A Content Delivery Network (CDN) is a globally distributed network of edge servers that cache and deliver content closer to users, reducing latency and server load.
+      Simple analogy: Instead of everyone traveling to the main bakery (origin server) to buy bread, small local bakeries (CDN edge servers) store and sell bread near your house.
+
+      🔑 Key Points
+        Static & semi-static content: Images, CSS, JS, videos, software downloads.
+        Edge caching: Content is cached at servers near the user’s geographic location.
+        Faster delivery: Requests are served by the nearest edge server instead of the origin.
+
+Ques. What are the usecases of a CDN?
+Ans.  1. Website Speed Optimization
+      2. Video & Live Streaming
+      3. Software Distribution - Faster downloads for apps, patches, and updates.
+      4. API Response Caching
+      5. DDoS Protection - Many CDNs absorb malicious traffic before it hits the origin.
+      6. Global Availability - Serve users worldwide with consistent performance.
+
+Ques. What are some real life usecases of a CDN?
+Ans.  1. Netflix - Uses Open Connect (its own CDN) to deliver HD/4K videos worldwide.
+      2. YouTube - Caches videos at edge servers closer to users to reduce buffering.
+      3. Facebook & Instagram - Serve billions of static assets (images, videos) via CDNs.
+      4. Amazon Prime & Disney+ - Use CDNs like CloudFront and Akamai for video streaming.
+      5. eCommerce (Amazon, Flipkart) - Serve product images & static pages quickly worldwide.
+      6. Gaming (Fortnite, PUBG) - Faster patch downloads via CDNs.
+
+Ques. How Does a CDN Help Avoid Single Point of Failure?
+Ans.  1. Redundant Edge Nodes: Even if one edge server goes down, traffic routes to the next closest.
+      2. DDoS Absorption: CDN edge absorbs high malicious traffic before it reaches origin.
+      3. Failover to Origin or Backup CDN: If cache fails, requests fall back to origin.
+
+Ques. How do you handle region based data access using CDN? Is it done using CDN logic or some other app level logic?
+Ans.  Both, but primarily through application logic.
+      CDN alone can block based on IP (basic geo-restrictions).
+      But licensing logic and per-user authorization are handled at the application layer, which controls whether a valid CDN URL is issued.
+
+      ** CDN Can Enforce Region Restrictions (Partial Solution)
+         - CDNs support Geo-Blocking / Geo-Restriction based on the user's IP address.
+         - The CDN edge server looks at the IP → maps it to a country → allows or denies access.
+         - BUT… CDN Alone Is Not Enough
+         - CDN caches static content but can’t handle complex licensing logic or dynamic personalization.
+         - Netflix often needs per-user licensing rules, which the application layer enforces.
+
+      ** Application-Level Enforcement (Primary Approach)
+         - User Login → App Checks Licensing Rules
+         - Signed URLs / Tokens for CDN - f the region is not allowed → no valid token is issued.
+
+      ** Combined Approach (Best Practice)
+         - App Layer - Determines licensing rules, issues signed playback URLs only if allowed.
+         - CDN Layer - Adds an extra layer of security by geo-blocking or geo-redirecting content.
+
+🧠 Interview Tips
+    When asked "How to make system globally scalable?" → Always mention a CDN.
+    When asked "How to reduce latency for static files?" → CDN is the primary answer.
+    Know trade-offs: CDN can serve stale content if cache invalidation is not handled well.

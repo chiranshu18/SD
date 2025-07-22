@@ -1,0 +1,27 @@
+Ques. What is a message queue and what is it user for?
+Ans.  A message queue is a communication mechanism used to enable asynchronous, decoupled communication between components in a system.
+      It works like a "mailbox" where one component puts a message (request/task), and another component picks it up later to process it.
+
+Ques. Explain the workflow of a message queue?
+Ans.  1. Producer (or sender) sends a message to the queue.
+      2. The message queue stores it (temporarily).
+      3. A Consumer (or worker) picks up the message and processes it.
+
+      This allows the producer and consumer to operate independently — they don’t need to be up at the same time or process tasks at the same speed.
+
+Ques. What Is Message Queue Used For?
+Ans.  Asynchronous Processing --> Offload time-consuming tasks (e.g., image processing, emails) to background workers.
+      Decoupling Services --> Microservices don't talk to each other directly — they push/pull from queues.
+      Retry & Fault Tolerance --> Failed messages can be retried or moved to a dead-letter queue (DLQ).
+      Load Buffering --> Absorbs spikes in load and prevents downstream systems from being overwhelmed.
+      Order Preservation --> Ensures events or tasks are processed in the order they were added (FIFO).
+
+Ques. Popular Message Queue Technologies
+Ans.  RabbitMQ, Apache Kafka, etc.
+
+Ques. Understand through an Analogy
+Ans.  Think of a coffee shop:
+      - You place your order (Producer).
+      - Waiter puts it on the order board (Message Queue).
+      - Another waiter picks it up and makes the coffee (Consumer).
+
